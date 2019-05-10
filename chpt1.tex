@@ -19,12 +19,14 @@
 
 \section*{3. Social learning and replicator dynamics}
 
-Here we have two behaviors: A and B. Without loss of generality, assume
-behavior A has a higher payoff than behavior B. We're told that when a
-two individuals meet, with one practicing behavior A and one practicing
-behavior B, that each individual will adopt behavior A with probability
-$1 - e$ and behaior B with probability $e$. When two individuals
-practicing the same behavior meet, their behavior does not change. Hence
+Consider a population practicing two alternate behaviors A and B.
+Without loss of generality, assume behaviour A has a higher payoff than
+behaviour B. We're told when two individuals practicing different
+behaviors interact, each individual will adopt behaviour A with
+probability $1 - e$ and behaviour B with probability $e$; and when two
+individuals practicing the same behaviour meet, their behaviour does not
+change. Hence the probabilities that an individual in an interaction
+will adopt behaviour A \textit{after} the interaction are given by
 
 \begin{align*}
     P(A|A,A) &= 1 \\
@@ -34,7 +36,8 @@ practicing the same behavior meet, their behavior does not change. Hence
 \end{align*}
 
 Letting $p$ be the probability that an individual in a population
-practices behavior A, we have
+practices behaviour A, we have that the probabilities of each type of
+interaction are given by
 
 \begin{align*}
     P(A,A) &= p^2 \\
@@ -43,8 +46,8 @@ practices behavior A, we have
     P(B,B) &= (1 - p)^2
 \end{align*}
 
-Hence the value of $p$ in the population's next generation, $p'$, is
-given by
+Hence the value of $p$ after the first phase of the population's
+interactions, $p'$, is given by
 
 \begin{align*}
     p' &= P(A,A)P(A|A,A) + P(A,B)P(A|A,B) + P(B,A)P(A|B,A) + P(B,B)P(A|B,B) \\
@@ -53,7 +56,7 @@ given by
        &= (2e - 1)p^2 + 2(1 - e)p
 \end{align*}
 
-and the change in frequency of A $\Delta p$ is given by
+and the change in frequency of behaviour A, $\Delta p$, is given by
 
 \begin{align*}
     \Delta p &= p' - p \\
