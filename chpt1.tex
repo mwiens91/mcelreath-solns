@@ -1,0 +1,65 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{3. Social learning and replicator dynamics}
+
+Here we have two behaviors: A and B. Without loss of generality, assume
+behavior A has a higher payoff than behavior B. We're told that when a
+two individuals meet, with one practicing behavior A and one practicing
+behavior B, that each individual will adopt behavior A with probability
+$1 - e$ and behaior B with probability $e$. When two individuals
+practicing the same behavior meet, their behavior does not change. Hence
+
+\begin{align*}
+    P(A|A,A) &= 1 \\
+    P(A|A,B) &= 1 - e \\
+    P(A|B,A) &= 1 - e \\
+    P(A|B,B) &= 0
+\end{align*}
+
+Letting $p$ be the probability that an individual in a population
+practices behavior A, we have
+
+\begin{align*}
+    P(A,A) &= p^2 \\
+    P(A,B) &= p(1 - p) \\
+    P(B,A) &= p(1 - p) \\
+    P(B,B) &= (1 - p)^2
+\end{align*}
+
+Hence the value of $p$ in the population's next generation, $p'$, is
+given by
+
+\begin{align*}
+    p' &= P(A,A)P(A|A,A) + P(A,B)P(A|A,B) + P(B,A)P(A|B,A) + P(B,B)P(A|B,B) \\
+       &= p^2 \cdot 1 + 2p(1 - p) \cdot (1 - e) + (1 - p)^2 \cdot 0 \\
+       &= p^2 + 2p(1 - p)(1 - e) \\
+       &= (2e - 1)p^2 + 2(1 - e)p
+\end{align*}
+
+and the change in frequency of A $\Delta p$ is given by
+
+\begin{align*}
+    \Delta p &= p' - p \\
+             &= \{(2e - 1)p^2 + 2(1 - e)p\} - p \\
+             &= (2e - 1)p^2 + (1 - 2e)p \\
+             &= p(1 - p)(1 - 2e)
+\end{align*}
+
+\end{document}
