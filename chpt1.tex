@@ -65,4 +65,63 @@ and the change in frequency of behaviour A, $\Delta p$, is given by
              &= p(1 - p)(1 - 2e)
 \end{align*}
 
+\section*{6. Horizontal cultural transmission, again}
+
+Consider a population practicing two alternate behaviours A and B. The
+payoff of behaviours A and B are $V(A)$ and $V(B)$, respectively. When
+two individuals interact, with one practicing behaviour A and the other
+practicing behaviour B, the individual practicing behaviour B will
+switch to behaviour A after the interaction with a probability
+proportional to $\beta (V(A) - V(B))$; otherwise, individuals in an
+interaction will not switch behaviours.
+
+The probabilities that an individual in an interaction will adopt
+behaviour A after the interaction are given by
+
+\begin{align*}
+    P(A|A,A) &= 1 \\
+    P(A|A,B) &= 1 \\
+    P(A|B,A) &= c \beta (V(A) - V(B)) \\
+    P(A|B,B) &= 0
+\end{align*}
+
+where $c$ is a constant of proportionality.
+
+Letting $p$ be the probability that an individual in a population
+practices behaviour A, we again have that the probabilities of each type
+of interaction are given by
+
+\begin{align*}
+    P(A,A) &= p^2 \\
+    P(A,B) &= p(1 - p) \\
+    P(B,A) &= p(1 - p) \\
+    P(B,B) &= (1 - p)^2
+\end{align*}
+
+Hence the value of $p$ after the first phase of the population's
+interactions, $p'$, is given by
+
+\begin{align*}
+    p' &= P(A,A)P(A|A,A) + P(A,B)P(A|A,B) + P(B,A)P(A|B,A) + P(B,B)P(A|B,B) \\
+       &= p^2 \cdot 1
+          + p(1 - p) \cdot 1
+          + p(1 - p) \cdot c \beta (V(A) - V(B))
+          + (1 - p)^2 \cdot 0 \\
+       &= p + c \beta p(1 - p)(V(A) - V(B))
+\end{align*}
+
+The change in frequency of behaviour A, $\Delta p$, is given by
+
+\begin{align*}
+    \Delta p &= p' - p \\
+             &= \{p + c \beta p(1 - p)(V(A) - V(B))\} - p \\
+             &= c \beta p(1 - p)(V(A) - V(B))
+\end{align*}
+
+If $c = \frac{1}{p(1 - p)}$ (why should this be the case?) then
+
+\begin{equation*}
+    \Delta p = \beta (V(A) - V(B))
+\end{equation*}
+
 \end{document}
