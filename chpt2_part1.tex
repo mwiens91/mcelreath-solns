@@ -32,22 +32,22 @@ When considering the Hawk-Dove game in Chapter 2, Doves were able to
 \end{tabular}
 \end{center}
 
-Now let's add a cost to displaying, $d$, where $0 \leq d \leq v$. Hence
-the modified payoff matrix is given by
+Now let's add a cost to displaying, $d / 2$, where $0 \leq d \leq v$.
+Hence the modified payoff matrix is given by
 
 \begin{center}
 \begin{tabular}{ccc}
     & Hawk & Dove \\
     \hline
     Hawk & $(v - c) / 2$ & $v$ \\
-    Dove & $0$ & $v / 2 - d$ \\
+    Dove & $0$ & $(v - d) / 2$ \\
     \hline
 \end{tabular}
 \end{center}
 
 Note that when $d = 0$ the modified payoff matrix reduces to the
-original payoff matrix; and that when $d > v / 2$, two Doves in an
-interaction over a resource incur a net loss interaction.
+original payoff matrix; and that when $d = v$, two Doves in an
+interaction over a resource incur no benefit from the interaction.
 
 Following the methods in the textbook, let's show that neither Dove nor
 Hawk is an ESS by considering what happens when a rare Hawk invades a
@@ -59,7 +59,7 @@ population.
 In a population of Doves, the fitness of a Dove is given by
 
 \begin{equation*}
-    W(D) \approx w_0 + \frac{v}{2} - d
+    W(D) \approx w_0 + \frac{v - d}{2}
 \end{equation*}
 
 and the fitness of a rare Hawk is given by
@@ -72,11 +72,11 @@ Hawks can invade a population of Doves if
 
 \begin{align*}
     &W(H) > W(D) \\
-    &\Rightarrow w_0 + v > w_0 + \frac{v}{2} - d \\
-    &\Rightarrow \frac{v}{2} > - d
+    &\Rightarrow w_0 + v > w_0 + \frac{v - d}{2} \\
+    &\Rightarrow v > - d
 \end{align*}
 
-which is always satisfied since $d > 0$ and $v > 0$. Hence Dove is not
+which is always satisfied since $v > 0$ and $d > 0$. Hence Dove is not
 an ESS.
 
 \textbf{Dove invasion}
@@ -106,6 +106,36 @@ given by that resource, Doves can invade Hawks and Hawk is not an ESS.
 
 \textbf{Mixed equilibrium}
 
-Suppose there is a stable equilibrium population of Doves and Hawks.
+Suppose there is a mixed equilibrium population of Doves and Hawks. At
+this equilibrium, we must have $W(D) = W(H)$.
+
+Now, if we let $p$ be the frequency of Hawks in the population, then
+from the modified payoff matrix above we can read off that
+
+\begin{align*}
+    W(D) &= w_0 + (1 - p) \frac{v - d}{2} \\
+    W(H) &= w_0 + p \frac{v - c}{2} + (1 - p) v
+\end{align*}
+
+Hence, letting $p = \hat{p}$ be the frequency of Hawks at the mixed
+equilibrium, we have
+
+\begin{align*}
+    &W(D) = W(H) \\
+    &\Rightarrow w_0 + (1 - \hat{p}) \frac{v - d}{2} = w_0 + \hat{p} \frac{v - c}{2} + (1 - \hat{p}) v \\
+    &\Rightarrow (1 - \hat{p}) \frac{v - d}{2} = \hat{p} \frac{v - c}{2} + (1 - \hat{p}) v \\
+    &\Rightarrow (\hat{p} - 1) \frac{v + d}{2} = \hat{p} \frac{v - c}{2} \\
+    &\Rightarrow \hat{p} \frac{c + d}{2} = \frac{v + d}{2} \\
+    &\Rightarrow \hat{p} = \frac{v + d}{c + d} \\
+    &\Rightarrow \hat{p} = \frac{v}{c} + \frac{d (c - v)}{c (c + d)}
+\end{align*}
+
+With the final expression for $\hat{p}$, we see that when $d = 0$, the
+$\hat{p}$ reduces to $v/c$, which is the value we obtain from the
+original payoff matrix. When $d = v$, we can see that the frequency of
+Doves is still non-zero. Hence a mixed equilibrium exists regardless of
+the value of $d$ (given that it satisfied its original constraints),
+which should be expected since we already concluded that Doves can
+invade Hawks (provided $c > v$).
 
 \end{document}
