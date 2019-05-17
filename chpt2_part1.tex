@@ -1,0 +1,111 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{2. Display costs}
+
+When considering the Hawk-Dove game in Chapter 2, Doves were able to
+``display'' at no cost, and hence their payoff matrix was given by
+
+\begin{center}
+    \begin{tabular}{ccc}
+        & Hawk & Dove \\
+        \hline
+        Hawk & $(v - c) / 2$ & $v$ \\
+        Dove & $0$ & $v / 2$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Now let's add a cost to displaying, $d$, where $0 \leq d \leq v$. Hence
+the modified payoff matrix is given by
+
+\begin{center}
+    \begin{tabular}{ccc}
+        & Hawk & Dove \\
+        \hline
+        Hawk & $(v - c) / 2$ & $v$ \\
+        Dove & $0$ & $v / 2 - d$ \\
+        \hline
+    \end{tabular}
+\end{center}
+
+Note that when $d = 0$ the modified payoff matrix reduces to the
+original payoff matrix; and that when $d > v / 2$, two Doves in an
+interaction over a resource incur a net loss interaction.
+
+Following the methods in the textbook, let's show that neither Dove nor
+Hawk is an ESS by considering what happens when a rare Hawk invades a
+Dove population and what happens when a rare Dove invades a Hawk
+population.
+
+\textbf{Hawk invasion}
+
+In a population of Doves, the fitness of a Dove is given by
+
+\begin{equation*}
+    W(D) \approx w_0 + \frac{v}{2} - d
+\end{equation*}
+
+and the fitness of a rare Hawk is given by
+
+\begin{equation*}
+    W(H) \approx w_0 + v
+\end{equation*}
+
+Hawks can invade a population of Doves if
+
+\begin{align*}
+    &W(H) > W(D) \\
+    &\Rightarrow w_0 + v > w_0 + \frac{v}{2} - d \\
+    &\Rightarrow \frac{v}{2} > - d
+\end{align*}
+
+which is always satisfied since $d > 0$ and $v > 0$. Hence Dove is not
+an ESS.
+
+\textbf{Dove invasion}
+
+In a population of Hawks, the fitness of a Hawk is given by
+
+\begin{equation*}
+    W(H) \approx w_0 + \frac{v - c}{2}
+\end{equation*}
+
+and the fitness of a rare Dove is given by
+
+\begin{equation*}
+    W(D) \approx w_0
+\end{equation*}
+
+Doves can invade a population of Hawks if
+
+\begin{align*}
+    &W(D) > W(H) \\
+    &\Rightarrow w_0 > w_0 + \frac{v - c}{2} \\
+    &\Rightarrow c > v
+\end{align*}
+
+Thus when the cost of fighting over a resource is greater than the value
+given by that resource, Doves can invade Hawks and Hawk is not an ESS.
+
+\textbf{Mixed equilibrium}
+
+Suppose there is a stable equilibrium population of Doves and Hawks.
+
+\end{document}
