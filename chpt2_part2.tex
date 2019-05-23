@@ -18,6 +18,14 @@
 % For payoff matrix
 \usepackage{multirow,array}
 
+% For decision tree
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+% For strikethroughs
+\usepackage{soul}
+
 \begin{document}
 
 \section*{4. Correlated versus uncorrelated symmetries}
@@ -151,8 +159,8 @@ all/a greater share of the resource at stake.
 \section*{6. Battle of the sexes}
 
 Pat and Chris want to spend the evening together, but Pat wants to go to
-the opera and Chris wants to go to the ballgame. Their payoffs are as
-follows:
+the opera and Chris wants to go to the ballgame. Their payoffs are
+presented in the following payoff matrix:
 
 % The payoff is taken from online. There might be a cleaner way of
 % formatting it?
@@ -166,7 +174,107 @@ follows:
 \end{tabular}
 \end{center}
 
-where Pat is the ``row player'' and Chris is the ``column player'' and
-the payoff entries $i, j$ refer to Pat's payoff and Chris's payoff for
-each event, respectively.
+where the payoff entries $i, j$ refer to Pat's payoff and Chris's payoff
+for each event, respectively.
+
+The decision tree for the game is as follows:
+
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=3.5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+
+% The sloped option gives rotated edge labels. Personally
+% I find sloped labels a bit difficult to read. Remove the sloped options
+% to get horizontal labels.
+\begin{center}
+\begin{tikzpicture}[grow=right, sloped]
+\node[bag] {Pat chooses}
+    child {
+        node[bag] {Chris chooses}
+            child {
+                node[end, label=right:
+                    {$1, 2$}] {}
+                edge from parent
+                node[above] {Game}
+            }
+            child {
+                node[end, label=right:
+                    {$0, 0$}] {}
+                edge from parent
+                node[above] {Opera}
+            }
+            edge from parent
+            node[above] {Game}
+    }
+    child {
+        node[bag] {Chris chooses}
+        child {
+                node[end, label=right:
+                    {$0, 0$}] {}
+                edge from parent
+                node[above] {Game}
+            }
+            child {
+                node[end, label=right:
+                    {$2, 1$}] {}
+                edge from parent
+                node[above] {Opera}
+            }
+        edge from parent
+            node[above] {Opera}
+    };
+\end{tikzpicture}
+\end{center}
+
+Now let's apply backwards induction. If Pat chooses Opera, Chris will
+choose Opera; if Pat chooses Game, Chris will choose Game. Hence we can
+reduce the decision tree to
+
+\begin{center}
+\begin{tikzpicture}[grow=right, sloped]
+\node[bag] {Pat chooses}
+    child {
+        node[bag] {Chris chooses}
+            child {
+                node[end, label=right:
+                    {$1, 2$}] {}
+                edge from parent
+                node[above] {Game}
+            }
+            child {
+                node[end, label=right:
+                    {\st{$0, 0$}}] {}
+                edge from parent
+                node[above] {\st{Opera}}
+            }
+            edge from parent
+            node[above] {Game}
+    }
+    child {
+        node[bag] {Chris chooses}
+        child {
+                node[end, label=right:
+                    {\st{$0, 0$}}] {}
+                edge from parent
+                node[above] {\st{Game}}
+            }
+            child {
+                node[end, label=right:
+                    {$2, 1$}] {}
+                edge from parent
+                node[above] {\textbf{Opera}}
+            }
+        edge from parent
+            node[above] {\textbf{Opera}}
+    };
+\end{tikzpicture}
+\end{center}
+
+Clearly, to maximize her payoff Pat will choose Opera and, in turn,
+Chris will choose Opera.
+
 \end{document}
