@@ -1,0 +1,147 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{4. Correlated versus uncorrelated symmetries}
+
+Here we consider a mixed population of Bourgeois and Assessors. Recall
+that in an interaction over a resource, Borgeois plays Hawk when is
+arrives first and plays Dove when it arrives second; and Assessors play
+Hawk when it is stronger than its opponent and Dove when it is weaker.
+
+Assume that the probability that a random Bourgeois is stronger than a
+random Assesor is $\frac{1}{2}$. We start by calculating the expected
+value of each possible interaction:
+
+\begin{align*}
+    V(B|B) &= \frac{v}{2} \\
+    V(B|A) &= \frac{1}{2} V(H|A) + \frac{1}{2} V(D|A) \\
+           &= \frac{1}{2} \cdot \Big[\frac{1}{2} v + \frac{1}{2}((1 - x) v - x c)\Big]
+              + \frac{1}{2} \cdot \frac{v}{4} \\
+           &= \frac{(5 - 2 x) v}{8} - \frac{x c}{4} \\
+    V(A|B) &= \frac{1}{2} V(A|H) + \frac{1}{2} V(A|D) \\
+           &= \frac{1}{2} \cdot \frac{x v - (1 - x) c}{2}
+              + \frac{1}{2} \cdot \frac{3 v}{4} \\
+           &= \frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8} \\
+    V(A|A) &= \frac{v}{2}
+\end{align*}
+
+Now, consider what happens when rare Bourgeois invade a population of
+Assessors.
+
+In this case, the fitness of an Assesor is
+
+\begin{equation*}
+    W(A) \approx w_0 + \frac{v}{2}
+\end{equation*}
+
+and the fitness of a rare Bourgeois is
+
+\begin{equation*}
+    W(B) \approx w_0 + \frac{(5 - 2 x) v}{8} - \frac{x c}{4}
+\end{equation*}
+
+Assesor will be an ESS against Bourgeois provided
+
+\begin{align*}
+    &W(A) > W(B) \\
+    &\Rightarrow w_0 + \frac{v}{2} > w_0 + \frac{(5 - 2 x) v}{8} - \frac{x c}{4} \\
+    &\Rightarrow \frac{v}{2} > \frac{(5 - 2 x) v}{8} - \frac{x c}{4} \\
+    &\Rightarrow x > \frac{v}{2(v + c)}
+\end{align*}
+
+Next, consider what happens when rare Assessors invade a population of Borgeois.
+
+The fitness of a Borgeois is
+
+\begin{equation*}
+    W(A) \approx w_0 + \frac{v}{2}
+\end{equation*}
+
+and the fitness of a rare Assessor is
+
+\begin{equation*}
+    W(B) \approx w_0 + \frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8} \\
+\end{equation*}
+
+Bourgeois will be an ESS against Assessor provided
+
+\begin{align*}
+    &W(B) > W(A) \\
+    &\Rightarrow w_0 + \frac{v}{2} > w_0 + \frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8} \\
+    &\Rightarrow \frac{v}{2} > \frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8} \\
+    &\Rightarrow x < \frac{v + 2 c}{2(v + c)}
+\end{align*}
+
+Suppose that
+
+\begin{equation*}
+    \frac{v}{2(v + c)} < x < \frac{v + 2 c}{2(v + c)}
+\end{equation*}
+
+Hence, if a single mixed equilibrium exists, it will be unstable. Let
+$p$ be the frequency of the population that are Assessors.
+
+Then, in a mixed population,
+
+\begin{align*}
+    W(B) &= w_0 + p V(B|A) + (1 - p) V(B|B) \\
+         &= w_0 + p \Big[\frac{(5 - 2 x) v}{8} - \frac{x c}{4}\Big]
+            + (1 - p) \frac{v}{2} \\
+    W(A) &= w_0 + p V(A|A) + (1 - p) V(A|B) \\
+         &= w_0 + p \frac{v}{2}
+            + (1 - p) \Big[\frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8}\Big]
+\end{align*}
+
+Let $\hat{p}$ be the equilibrium frequency of Assessors in the mixed
+population. Then we have that
+
+\begin{align*}
+    &W(B) = W(A) \\
+    &\Rightarrow
+        w_0 + \hat{p} \Big[\frac{(5 - 2 x) v}{8} - \frac{x c}{4}\Big]
+        + (1 - \hat{p}) \frac{v}{2}
+        =
+        w_0 + \hat{p} \frac{v}{2}
+        + (1 - \hat{p}) \Big[\frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8}\Big] \\
+    &\Rightarrow
+        \hat{p} \Big[\frac{(5 - 2 x) v}{8} - \frac{x c}{4}\Big]
+        + (1 - \hat{p}) \frac{v}{2}
+        =
+        \hat{p} \frac{v}{2}
+        + (1 - \hat{p}) \Big[\frac{(x - 1) c}{4} + \frac{v (2 x + 3)}{8}\Big] \\
+    &\Rightarrow \hat{p} = \frac{v (1 - 2 x) + 2 c (1 - x)}{2 c}
+\end{align*}
+
+We can read off from the expression of $\hat{p}$ above that
+
+\begin{equation*}
+    \hat{p}\bigr|_{x=0.5} = \frac{1}{2}
+\end{equation*}
+
+and also that when $x > 0.5$, $\hat{p} < \frac{1}{2}$ (provided that the
+equation for $\hat{p}$ satisfies probability constraints---i.e., $0 \leq
+\hat{p} \leq 1$). This can be heuristically explained when considering
+that when $x$ is small, Assessor's assessment of potential combats are
+accurate; so they play Hawk for combats they can win and Dove otherwise.
+However when $x$ is large, Assessor's assessments of potential combats
+aren't very accurate; they end up shying away (playing Dove) in combats
+that they could otherwise probably win, and hence lose out on all/a
+greater share of the resource at stake.
+
+\end{document}
