@@ -20,13 +20,13 @@
 \section*{4. Correlated versus uncorrelated symmetries}
 
 Here we consider a mixed population of Bourgeois and Assessors. Recall
-that in an interaction over a resource, Borgeois plays Hawk when is
-arrives first and plays Dove when it arrives second; and Assessors play
+that in an interaction over a resource, Borgeois play Hawk when they
+arrives first and play Dove when they arrives second; Assessors play
 Hawk when it is stronger than its opponent and Dove when it is weaker.
 
 Assume that the probability that a random Bourgeois is stronger than a
-random Assesor is $\frac{1}{2}$. We start by calculating the expected
-value of each possible interaction:
+random Assesor is $\frac{1}{2}$. We start by calculating the payoff of
+each possible interaction:
 
 \begin{align*}
     V(B|B) &= \frac{v}{2} \\
@@ -42,7 +42,7 @@ value of each possible interaction:
 \end{align*}
 
 Now, consider what happens when rare Bourgeois invade a population of
-Assessors.
+Assessors:
 
 In this case, the fitness of an Assesor is
 
@@ -65,7 +65,7 @@ Assesor will be an ESS against Bourgeois provided
     &\Rightarrow x > \frac{v}{2(v + c)}
 \end{align*}
 
-Next, consider what happens when rare Assessors invade a population of Borgeois.
+Next, consider what happens when rare Assessors invade a population of Borgeois:
 
 The fitness of a Borgeois is
 
@@ -94,8 +94,9 @@ Suppose that
     \frac{v}{2(v + c)} < x < \frac{v + 2 c}{2(v + c)}
 \end{equation*}
 
-Hence, if a single mixed equilibrium exists, it will be unstable. Let
-$p$ be the frequency of the population that are Assessors.
+Hence, if a single mixed equilibrium exists, it will be unstable (since
+both pure equilibria are stable). Let $p$ be the frequency of the
+population that are Assessors.
 
 Then, in a mixed population,
 
@@ -136,12 +137,12 @@ We can read off from the expression of $\hat{p}$ above that
 
 and also that when $x > 0.5$, $\hat{p} < \frac{1}{2}$ (provided that the
 equation for $\hat{p}$ satisfies probability constraints---i.e., $0 \leq
-\hat{p} \leq 1$). This can be heuristically explained when considering
+\hat{p} \leq 1$). This can be heuristically explained by considering
 that when $x$ is small, Assessor's assessment of potential combats are
 accurate; so they play Hawk for combats they can win and Dove otherwise.
 However when $x$ is large, Assessor's assessments of potential combats
 aren't very accurate; they end up shying away (playing Dove) in combats
-that they could otherwise probably win, and hence lose out on all/a
-greater share of the resource at stake.
+that they could have otherwise (probably) won, and hence lose out on
+all/a greater share of the resource at stake.
 
 \end{document}
