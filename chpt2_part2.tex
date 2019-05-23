@@ -15,6 +15,9 @@
 % Links
 \usepackage{hyperref}
 
+% For payoff matrix
+\usepackage{multirow,array}
+
 \begin{document}
 
 \section*{4. Correlated versus uncorrelated symmetries}
@@ -145,4 +148,25 @@ aren't very accurate; they end up shying away (playing Dove) in combats
 that they could have otherwise (probably) won, and hence lose out on
 all/a greater share of the resource at stake.
 
+\section*{6. Battle of the sexes}
+
+Pat and Chris want to spend the evening together, but Pat wants to go to
+the opera and Chris wants to go to the ballgame. Their payoffs are as
+follows:
+
+% The payoff is taken from online. There might be a cleaner way of
+% formatting it?
+\begin{center}
+\setlength{\extrarowheight}{2pt}
+\begin{tabular}{*{4}{c|}}
+    \multicolumn{2}{c}{} & \multicolumn{2}{c}{Chris}\\\cline{3-4}
+    \multicolumn{1}{c}{} &  & Opera & Game \\\cline{2-4}
+    \multirow{2}*{Pat} & Opera & $2,1$ & $0,0$ \\\cline{2-4}
+      & Game & $0,0$ & $1,2$ \\\cline{2-4}
+\end{tabular}
+\end{center}
+
+where Pat is the ``row player'' and Chris is the ``column player'' and
+the payoff entries $i, j$ refer to Pat's payoff and Chris's payoff for
+each event, respectively.
 \end{document}
