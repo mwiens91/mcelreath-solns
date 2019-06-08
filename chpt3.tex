@@ -115,4 +115,108 @@ Therefore, we have that
 
 which is desired form of Hamilton's rule.
 
+\section*{4. Frequency dependent assortment}
+
+Here we consider altruistic and selfish behaviour with the following
+payoffs (A denotes altruistic behaviour and S denotes selfish
+behaviour):
+
+\begin{center}
+\begin{tabular}{ccc}
+    & A & S \\
+    \hline
+    A & $b - c$ & $-c$ \\
+    S & $b$ & $0$ \\
+    \hline
+\end{tabular}
+\end{center}
+
+where the payoffs listed are for the ``row player''.
+
+Assume $b - c > 0$. Consider limited dispersal where the probabilities
+of each possible interaction are given by
+
+\begin{align*}
+    P(A,A) &= \frac{p^2 (1 + a)}{1 + a p} \\
+    P(S,S) &= \frac{(1 - p^2) (1 + a)}{1 + a (1 - p)} \\
+    P(A,S) &= p (1 - p) \bigg(\frac{1}{1 + a p} + \frac{1}{1 + a (1 - p)}\bigg)
+\end{align*}
+
+where $a$ is a positive constant and $p$ is the frequency of altruists
+in the population. Note that higher values of $a$ mean more assortative
+interaction.
+
+The first thing we'll do is inject the above probabilities of
+interactions into Hamilton's rule
+
+\begin{equation*}
+    \{P(A|A) - Pr(A|S)\} b > c
+\end{equation*}
+
+Now, using probability rules we have,
+
+\begin{align*}
+    P(A|A) &= \frac{P(A,A)}{P(A)} \\
+           &= \frac{\frac{p^2 (1 + a)}{1 + a p}}{p} \\
+           &= \frac{p (1 + a)}{1 + a p} \\ \\
+    P(A|S) &= \frac{P(A,S)}{P(S)} \\
+           &= \frac{p (1 - p) \Big(\frac{1}{1 + a p} + \frac{1}{1 + a (1 - p)}\Big)}{1 - p} \\
+           &= p \bigg(\frac{1}{1 + a p} + \frac{1}{1 + a (1 - p)}\bigg)
+\end{align*}
+
+Thus, substituting $P(A|A)$ and $P(A|S)$ into Hamilton's rule above, we have
+
+\begin{equation*}
+    \Bigg\{\frac{p (1 + a)}{1 + a p} - p \bigg(\frac{1}{1 + a p} + \frac{1}{1 + a (1 - p)}\bigg) \Bigg\} b > c
+\end{equation*}
+
+which we can also express in the following form
+
+\begin{equation*}
+    \frac{p (1 + a^2 (p - 1) + a (p - 1))}{(a (p - 1) - 1)(a p + 1)} b > c
+\end{equation*}
+
+Now we're in a great position to answer a few biological questions:
+
+(a) Is selfish behaviour evolutionarily stable? Yes! In this case we set
+$p = 0$ and we can immediately see from Hamilton's rule that altruistic
+behaviour it \textit{not} evolutionarily stable---which implies that
+selfish behaviour \textit{is} evolutionarily stable.
+
+(b) Is altruistic behaviour evolutionarily stable? No! Here we set $p =
+1$, which, substituted into Hamilton's rule, gives
+
+\begin{equation*}
+    - \frac{1}{a + 1} b > c
+\end{equation*}
+
+which is clearly false, indicating that altruistic behaviour.
+
+(c) Can altruistic behaviour occur at values of ``intermediate'' values
+of $p$ such that $0 < p < 1$? Yes! So long as $a$ satisfies
+
+\begin{equation*}
+    a > \frac{
+        -b p^2 + p b - c + \sqrt{
+            b^2 p^4 - 6 b^2 p^3 + 4 b c p^3 + 5 b^2 p^2 -6 b c p^2 + 4 c^2 p^2 + 2 b c p - 4 c^2 p + c^2
+        }}{2 p (p b - c p - b + c)}
+\end{equation*}
+
+While the above condition for $a$ is exact, it perhaps isn't so
+illuminating. So let's develop a bit more intuition by taking the limit
+of $a$ in the first term of our expression for Hamilton's rule:
+
+\begin{equation*}
+    \lim_{a\to\infty} \frac{p (1 + a^2 (p - 1) + a (p - 1))}{(a (p - 1) - 1)(a p + 1)} = 1
+\end{equation*}
+
+Hence
+
+\begin{equation*}
+    \lim_{a\to\infty} \{P(A|A) - Pr(A|S)\} b = b > c
+\end{equation*}
+
+where $b > c$ by assumption. Hence for $a$ sufficiently large we see
+that Hamilton's rule is satisfied for intermediate values of $p$.
+
 \end{document}
