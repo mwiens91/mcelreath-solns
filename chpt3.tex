@@ -1,0 +1,118 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{2. Covariance assortment}
+
+In Chapter 3 we saw a general non-genetic form of Hamilton's rule
+expressed in terms of conditional probabilities of interaction:
+
+\begin{equation*}
+    \{P(C|C) - Pr(C|D)\} b > c
+\end{equation*}
+
+where $P(C|C)$ is the probability a ``cooperator'' meets a cooperator,
+$P(C|D)$ is the probability a ``defector'' meets a cooperator, and $b$
+and $c$ are constants representing the value of receiving aid and the
+cost of giving aid, respectively.
+
+We need to show that the most general covariance form of Hamilton's rule,
+
+\begin{equation*}
+    \frac{cov(p_i, y_i)}{cov(p_i, h_i)} b > c
+\end{equation*}
+
+reduces to the top-most expression for Hamilton's rule when assuming a
+haploid model where individuals with altruism alleles always act
+altruistically and individuals without altruism alleles never act
+altruistically.
+
+Note that in the above expression $p_i$, $y_i$, and $h_i$ represent, for
+the $i$th individual, the frequency of the altruism allele in the
+individual (this is binary-valued by assumption), the probability that
+they receive aid, and the probability that they give aid, respectively.
+
+Expanding out the covariances above we have
+
+\begin{align*}
+    cov(p_i, y_i) &= E(p_i y_i) - E(p_i) E(y_i) \\
+    cov(p_i, h_i) &= E(p_i h_i) - E(p_i) E(h_i)
+\end{align*}
+
+Let $p$ be the frequency of the altruism allele in the population.
+
+Note that $E(p_i) = p$: the expectation of the frequency if the altruism
+allele over all $i$th individuals is just the frequency of the altruism
+allele in the population. Also note that $h_i = p_i$: the probability
+the $i$th individual gives aid is just the frequency of the altruism
+allele in that individual. These ``notes'' jointly imply $E(h_i) = p$.
+
+Hence we can simplify our above covariance expressions as follows:
+
+\begin{align*}
+    cov(p_i, y_i) &= E(p_i y_i) - p E(y_i) \\
+    cov(p_i, h_i) &= E(p_i^2) - p^2
+\end{align*}
+
+Note that $E(p_i^2) = p \cdot 1^2 + (1 - p) \cdot 0^2 = p$, hence we can
+simplify even further:
+
+\begin{align*}
+    cov(p_i, y_i) &= E(p_i y_i) - p E(y_i) \\
+    cov(p_i, h_i) &= p (1 - p)
+\end{align*}
+
+Now, we can express $y_i$ in terms of $p_i$ by breaking up the cases in
+which the $i$th individual is an altruist or a defector:
+
+\begin{equation*}
+    y_i = p_i P(C|C) + (1 - p_i) P(C|D)
+\end{equation*}
+
+This implies, using $E(p_i)$ above,
+
+\begin{equation*}
+    E(y_i) = p P(C|C) + (1 - p) P(C|D)
+\end{equation*}
+
+and also
+
+\begin{align*}
+    E(p_i y_i) &= p \cdot 1 \cdot 1 \cdot P(C|C) + (1 - p) \cdot 0 \cdot 1 \cdot P(C|D) \\
+               &= p P(C|C)
+\end{align*}
+
+Hence, going back to the expressions for our covariances, we have
+
+\begin{align*}
+    cov(p_i, y_i) &= p \{P(C|C) - [p P(C|C) + (1 - p) P(C|D)]\} \\
+    cov(p_i, h_i) &= p (1 - p)
+\end{align*}
+
+Therefore, we have that
+
+\begin{align*}
+    &\frac{cov(p_i, y_i)}{cov(p_i, h_i)} b > c \\
+    &\Rightarrow \frac{p \{P(C|C) - [p P(C|C) + (1 - p) P(C|D)]\}}{p (1 - p)} b > c \\
+    &\Rightarrow \frac{P(C|C) - [p P(C|C) + (1 - p) P(C|D)]}{(1 - p)} b > c \\
+    &\Rightarrow \{P(C|C) - P(C|D)\} b > c
+\end{align*}
+
+which is desired form of Hamilton's rule.
+
+\end{document}
