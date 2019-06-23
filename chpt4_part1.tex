@@ -1,0 +1,254 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{2. Even bad guys are vulnerable}
+
+Here we are considering a population where individuals interact with
+each other in an iterated prisoner's dilemma. Recall that the strategy
+ALLC (always cooperate) will always cooperate; ALLD (always defect) will
+always defect; TFT (tit-for-tat) will always cooperate in the first
+round and will cooperate in subsequent rounds provided their opponent
+did not defect in the preceding round (otherwise they will defect); STFT
+(suspicious tit-for-tat) will defect in the first round and play the
+same as TFT for subsequent rounds; and TF2T (tit-for-two-tats) will
+cooperate in the first two rounds and will cooperate in subsequent
+rounds provided their opponent did not defect in both of the preceding
+two rounds (otherwise they will defect).
+
+We want to show that a population in which ALLD is common can be invaded
+by STFT when mutation maintains TF2T in the population at a low
+frequency. Let $p$ and $q$ be the frequency of ALLD and TF2T in the
+population, respectively. Letting $W(i)$ be the fitness of strategy $i$
+in this population, we need to show that
+
+\begin{align*}
+    W(STFT) &> W(ALLD) \\
+    W(STFT) &> W(TF2T)
+\end{align*}
+
+Both of these inequalities provide a sufficient condition (though not a
+necessary condition) for STFT to invade. Let's go ahead and find the
+fitnesses of each strategy. To do so, we need to first determine the
+payoffs $V(i|j)$ for strategy $i$ against strategy $j$:
+
+For STFT we have
+
+\begin{align*}
+    V(STFT|ALLD) &= 0 \\
+    V(STFT|TF2T) &= b + w V(ALLC|ALLC) \\
+                 &= b + w \frac{b - c}{1 - w} \\
+    V(STFT|STFT) &= 0
+\end{align*}
+
+For ALLD we have
+
+\begin{align*}
+    V(ALLD|ALLD) &= 0 \\
+    V(ALLD|TF2T) &= 2 b \\
+    V(ALLD|STFT) &= 0
+\end{align*}
+
+And for TF2T we have
+
+\begin{align*}
+    V(TF2T|ALLD) &= - 2 c \\
+    V(TF2T|TF2T) &= V(ALLC|ALLC) \\
+                 &= \frac{b - c}{1 - w} \\
+    V(TF2T|STFT) &= - c + w V(ALLC|ALLC) \\
+                 &= - c + w \frac{b - c}{1 - w}
+\end{align*}
+
+Hence the fitnesses $W(i)$ are
+
+\begin{align*}
+    W(STFT) &= w_0 + p V(STFT|ALLD) + q V(STFT|TF2T) + (1 - p - q) V(STFT|STFT) \\
+            &= w_0 + q \Big(b + w \frac{b - c}{1 - w}\Big) \\
+    W(ALLD) &= w_0 + p V(ALLD|ALLD) + q V(ALLD|TF2T) + (1 - p - q) V(ALLD|STFT) \\
+            &= w_0 + 2 b q \\
+    W(TF2T) &= w_0 + p V(TF2T|ALLD) + q V(TF2T|TF2T) + (1 - p - q) V(TF2T|STFT) \\
+            &= w_0 + - 2 c p + q \frac{b - c}{1 - w} + (1 - p - q) \Big(- c + w \frac{b - c}{1 - w}\Big)
+\end{align*}
+
+Now let's go back to the sufficient condition that we're interested in.
+We start with pitting the fitness of STFT against the fitness of ALLD:
+
+\begin{align*}
+    &W(STFT) > W(ALLD) \\
+    &\Rightarrow w_0 + q \Big(b + w \frac{b - c}{1 - w}\Big) > w_0 + 2 b q \\
+    &\Rightarrow b + w \frac{b - c}{1 - w} > 2 b \\
+    &\Rightarrow w \frac{b - c}{1 - w} > b \\
+\end{align*}
+
+The last inequality tells us that if the benefit of cooperating in
+subsequent rounds (after defecting the first round) with a TF2T is
+greater than the benefit of defecting the first two rounds with a TF2T
+(and never cooperating thereafter), then STFT will have higher fitness
+than ALLD. It all comes down to how STFT and ALLD play against TF2T: if
+we leave the payoffs in the form $V(i|j)$ then the above inequalities
+are equivalent to
+
+\begin{equation*}
+    V(STFT|TF2T) > V(ALLD|TF2T)
+\end{equation*}
+
+Now comparing the fitness of STFT against TF2T, we have
+
+\begin{align*}
+    &W(STFT) > W(TF2T) \\
+    &\Rightarrow w_0 + q \Big(b + w \frac{b - c}{1 - w}\Big) > w_0 + - 2 c p + q \frac{b - c}{1 - w} + (1 - p - q) \Big(- c + w \frac{b - c}{1 - w}\Big) \\
+    &\Rightarrow q \Big(b + w \frac{b - c}{1 - w}\Big) > - 2 c p + q \frac{b - c}{1 - w} + (1 - p - q) \Big(- c + w \frac{b - c}{1 - w}\Big)
+\end{align*}
+
+If we make the $p \approx 1$ (and hence $q \approx 0$) (note this is
+appropriate because $p \gg q$ by assumption), then the above inequality
+reduces to
+
+\begin{equation*}
+    0 > - 2 c
+\end{equation*}
+
+which is clearly true. Without approximating, the exact inequalities
+simplify to
+
+\begin{equation*}
+    q < \frac{(1 + p - 2 p w) c - (1 - p) b}{w (b - c)}
+\end{equation*}
+
+While that this exact inequality isn't particularly informative, it does
+tell us that at values of $q$ greater than or equal to the RHS, our
+sufficient condition necessarily breaks: so we require $q$ to be small
+but still non-zero---else $W(STFT) = W(ALLD)$ and STFT cannot invade.
+
+Hence STFT can always invade in this scenario provided that they play
+better against TF2T than ALLD does \textit{and} that the frequency of
+TF2T is sufficiently small but still non-zero.
+
+\section*{4. Doing the dishes again, and again}
+
+Consider an iterated game involving two players either resting (R) or
+washing dishes (W) with payoffs
+
+\begin{align*}
+    V(R|R) &= 0 \\
+    V(R|W) &= b \\
+    V(W|W) &= b - \frac{k}{2} \\
+    V(W|R) &= b - k
+\end{align*}
+
+where $b, k > 0$. After each round, the players continue playing the
+game with probability $w$.
+
+Consider three strategies: AW (always wash) always washes; NW (never
+wash) never washes; and WFT (wash-for-tat), which has the following
+behaviour: on the first round if the opponent insists on washing, WFT
+will rest; if the opponent insists on resting, WFT will wash; and if the
+opponent is another WFT, one WFT will wash or rest at random, and the
+other WFT will play the action not chosen by the first. On subsequent
+rounds, WFT will play the action that their opponent played in the
+preceding round.
+
+The first result we want to show is
+
+\begin{equation*}
+    V(WFT|WFT) = V(AW|AW) = \frac{b - k / 2}{1 - w}
+\end{equation*}
+
+Let's calculate each of the payoffs:
+
+\begin{align*}
+    V(AW|AW) &= \sum_{i = 0}^{\infty} V(W|W) w^i \\
+             &= V(W|W) \frac{1}{1 - w} \\
+             &= \frac{b - k / 2}{1 - w}
+\end{align*}
+
+Using the notation where $2 \mathbb{Z}$ denotes the set of even integers
+and $2 \mathbb{Z} + 1$ denotes the set of odd integers, we have
+
+\begin{align*}
+    V(WFT|WFT) &=
+        \frac{1}{2} \Bigg[
+            \sum_{\substack{i = 0 \\ i \in 2 \mathbb{Z}}}^{\infty} V(R|W) w^i
+            + \sum_{\substack{i = 0 \\ i \in 2 \mathbb{Z} + 1}}^{\infty} V(W|R) w^i
+        \Bigg]
+        + \frac{1}{2} \Bigg[
+            \sum_{\substack{i = 0 \\ i \in 2 \mathbb{Z}}}^{\infty} V(W|R) w^i
+            + \sum_{\substack{i = 0 \\ i \in 2 \mathbb{Z} + 1}}^{\infty} V(R|W) w^i
+        \Bigg] \\
+               &= \frac{1}{2} \sum_{i = 0}^{\infty} V(R|W) w^i + \frac{1}{2} \sum_{i = 0}^{\infty} V(W|R) w^i \\
+               &= \frac{1}{2} \Big(V(R|W) + V(W|R)\Big) \frac{1}{1 - w} \\
+               &= \frac{1}{2} (b + b - k) \frac{1}{1 - w} \\
+               &= \frac{b - k / 2}{1 - w}
+\end{align*}
+
+Hence we indeed have that
+
+\begin{equation*}
+    V(WFT|WFT) = V(AW|AW) = \frac{b - k / 2}{1 - w}
+\end{equation*}
+
+The next (and final) result we want to show is that WFT is stable
+against invasion by rare NW when
+
+\begin{equation*}
+    w b > k / 2
+\end{equation*}
+
+First let's calculate $V(NW|WFT)$:
+
+\begin{align*}
+    V(NW|WFT) &= V(R|W) + w \sum_{i = 0}^{\infty} V(R|R) w^i \\
+              &= b
+\end{align*}
+
+Hence the fitnesses of both strategies in a population of WFTs are given by
+
+\begin{align*}
+    W(WFT) &= w_0 + \frac{b - k / 2}{1 - w} \\
+    W(NW) &= w_0 + b
+\end{align*}
+
+WFT will be stable against invasion by rare NW provided
+
+\begin{align*}
+    &W(WFT) > W(NW) \\
+    &\Rightarrow w_0 + \frac{b - k / 2}{1 - w} > w_0 + b \\
+    &\Rightarrow b - k / 2 > (1 - w) b \\
+    &\Rightarrow w b > k / 2
+\end{align*}
+
+which is the result we wanted to show.
+
+Now, Hamilton's rule states that (in the context of the prisoner's dilemma)
+
+\begin{equation*}
+    b r > c
+\end{equation*}
+
+where $b$ is the benefit for having your opponent cooperate and $c$ is
+the cost of cooperating. This statement is very similar to the last
+result we derived. The $b$ parameters are shared and have the same
+meaning, and we can identify $c$ with $k / 2$, again with the same
+meaning. $w$ and $r$ have different meanings, but play the same role in
+terms of the equations: $r$ tells you how correlated your altruistic
+behaviour is with others' altruistic behaviour, and $w$ tells you how
+likely altruists are to continue interacting with each other---both tell
+you the extent to which altruism begets altruism.
+
+\end{document}
