@@ -1,0 +1,147 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{6. Tolerance and $\boldsymbol{n}$-person reciprocity}
+
+Recall that in the $n$-person iterated prisoner's dilemma ($n$-IPD),
+$T_i$, $0 \leq i \leq n - 1$, is the strategy which always cooperates on
+the first round, and only cooperates on subsequent rounds provided at
+least $i$ other individuals cooperated on the previous round (else it
+defects). In Chapter 4, we saw that $T_{n - 1}$ is an ESS against ALLD
+for the $n$-IPD. We want to show that $T_{n - m}$ where $2 \leq m \leq
+n$ is never an ESS for $n$-IPD against ALLD.
+
+Fix $m$ such that $2 \leq m \leq n$. Assume we have a population where
+$T_{n - m}$ is common. Then the relevant payoff to $T_{n - m}$ for the
+$n$-IPD is
+
+\begin{equation*}
+    V(T_{n - m}|n - 1) = \frac{b - c}{1 - w}
+\end{equation*}
+
+while the relevant payoff for ALLD is
+
+\begin{equation*}
+    V(ALLD|n - 1) = \frac{b (n - 1)}{n} \cdot \frac{1}{1 - w}
+\end{equation*}
+
+Hence $T_{n - m}$ is an ESS against ALLD provided
+
+\begin{align*}
+    &V(T_{n - m}|n - 1) > V(ALLD|n - 1) \\
+    &\Rightarrow \frac{b - c}{1 - w} > \frac{b (n - 1)}{n (1 - w)} \\
+    &\Rightarrow n (b - c) > b (n - 1) \\
+    &\Rightarrow - n c > - b \\
+    &\Rightarrow c - \frac{b}{n} < 0
+\end{align*}
+
+Taking the limit as $n \to \infty$, we see that we end up with $c < 0$,
+which is false! Hence $T_{n - m}$ is not an ESS against ALLD provided
+$n$ is sufficiently large.
+
+\section*{7. $\boldsymbol{n}$-person stag hunting}
+
+Consider the $n$-person stag hunt game. In this game individuals can
+play one of two strategies: hare hunting (H) or stag hunting (S).
+Hunting hares is a solitary activity that yields payoff $h$ with success
+rate $1$; hunting stags is a cooperative activity which has a payoff $s$
+($s > h$) for each individual with success rate $\frac{x}{n}$ where $x$
+is the number of stag hunters in the group.
+
+Let $p$ be the frequency of S in the population. What we want to show
+here is the conditions for which H and S are ESSs, and then calculate
+any internal equilibria and their stability.
+
+Let's first consider a population where H is common and S invades. The
+stag-hunt game payoff for H is
+
+\begin{equation*}
+    V(H) = h
+\end{equation*}
+
+while the payoff for S is
+
+\begin{equation*}
+    V(S|0) = \frac{1}{n} s
+\end{equation*}
+
+Hence H is an ESS provided
+
+\begin{align*}
+    &V(H) > V(S|0) \\
+    &\Rightarrow h > \frac{s}{n}
+\end{align*}
+
+Now let's consider a population where S is common and H invades. The
+stag-hunt game payoff for H is the same as in the previous case, while
+the payoff for S is now
+
+\begin{equation*}
+    V(S|n - 1) = s
+\end{equation*}
+
+Hence S is an ESS provided
+
+\begin{align*}
+    &V(S|n - 1) > V(H) \\
+    &\Rightarrow s > h
+\end{align*}
+
+which is always true, by assumption.
+
+Now let's consider internal equilibria. The payoff for H is going to
+stay the same, so the fitness of H is given by
+
+\begin{equation*}
+    W(H) = w_0 + h
+\end{equation*}
+
+For the fitness of S, assume that the players in the game are randomly
+selected from the population. This gives us
+
+\begin{align*}
+    W(S) &= w_0 + \sum_{i = 0}^{n - 1} \binom{n - 1}{i} p^i (1 - p)^{n - 1 - i} V(S|i) \\
+         &= w_0 + \sum_{i = 0}^{n - 1} \binom{n - 1}{i} p^i (1 - p)^{n - 1 - i} \frac{i + 1}{n} s \\
+         &= w_0 + \frac{s}{n} \sum_{i = 0}^{n - 1} \binom{n - 1}{i} p^i (1 - p)^{n - 1 - i} (i + 1) \\
+         &= w_0 + \frac{s}{n} \left(\sum_{i = 0}^{n - 1} \binom{n - 1}{i} p^i (1 - p)^{n - 1 - i} i + \sum_{i = 0}^{n - 1} \binom{n - 1}{i} p^i (1 - p)^{n - 1 - i}\right) \\
+         &= w_0 + \frac{s}{n} (p (n - 1) + 1)
+\end{align*}
+
+Let $\hat{p}$ denote the internal equilibrium frequency(s) of S. These
+occur when
+
+\begin{align*}
+    &W(H) = W(S) \\
+    &\Rightarrow w_0 + h = w_0 + \frac{s}{n} (\hat{p} (n - 1) + 1) \\
+    &\Rightarrow h = \frac{s}{n} (\hat{p} (n - 1) + 1) \\
+    &\Rightarrow \hat{p} = \frac{h n - s}{s (n - 1)}
+\end{align*}
+
+Note that this internal equilibrium exists provided that
+
+\begin{equation*}
+    h > \frac{s}{n}
+\end{equation*}
+
+But this is exactly our condition for H to be an ESS! Hence this
+internal equilibrium is unstable if it exists (since both pure
+equilibria will be stable).
+
+\end{document}
