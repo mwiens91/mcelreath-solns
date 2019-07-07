@@ -15,6 +15,11 @@
 % Links
 \usepackage{hyperref}
 
+% For decision tree
+\usepackage[latin1]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
 \begin{document}
 
 \section*{2. Sometimes it's better to say nothing at all}
@@ -115,5 +120,138 @@ average fitness of both donors and beneficiaries is less in the
 signaling population than in the non-signaling population.
 
 \textbf{what are they even asking for here??}
+
+\section*{4. External commitment}
+
+Consider the following kidnapping scenario: Joe has kidnapped Sue and
+successfully received a randsom from her parents. Joe now needs to
+decide whether to release or kill Sue. All other things equal, Joe
+prefers not to kill Sue; but if Joe releases Sue, she may identify Joe
+to the police.
+
+Sue makes a promise to Joe that she will not identify Joe to the police
+provided she is released. Should Joe believe her?
+
+We determine this using backwards induction on a game tree, where the
+respective payoffs to Joe and Sue are labeled on the leaf nodes:
+
+% Set the overall layout of the tree
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=5cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=5cm]
+\tikzstyle{level 3}=[level distance=3.5cm, sibling distance=2.5cm]
+\tikzstyle{level 4}=[level distance=3.5cm, sibling distance=2.5cm]
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=9em, text centered]
+
+% The sloped option gives rotated edge labels. Personally
+% I find sloped labels a bit difficult to read. Remove the sloped options
+% to get horizontal labels.
+\begin{center}
+\begin{tikzpicture}[grow=down, sloped]
+\node[bag] {Joe chooses}
+    child {
+        node[bag] {safe, dead}
+            edge from parent
+            node[above] {Kill}
+    }
+    child {
+        node[bag] {Sue chooses}
+        child {
+                node[bag] {unsafe, alive}
+                edge from parent
+                node[above] {Identify}
+            }
+        child {
+                node[bag] {safe, alive}
+                edge from parent
+                node[above] {Don't identify}
+            }
+        edge from parent
+            node[above] {Release}
+    };
+\end{tikzpicture}
+\end{center}
+
+If we assume that, all other things equal, Sue would rather see Joe in
+jail than not, than if Sue is released she will always identify Joe to
+the police. Hence, Joe shouldn't believe Sue's promise.
+
+Now, suppose Sue makes an alternate promise: Sue commits a crime that
+Joe will witness, then Joe will release Sue. We will assume that Sue
+always commits the crime (and never instead runs away).
+
+For this more complicated case, let's define some variables: let $k$ be
+the cost to Joe for killing Sue; $c_J$ and $c_S$ be the costs to Joe and
+Sue, respectively, for being identified to the police; and $b_J$ and
+$b_S$ be the benefits to Joe and Sue, respectively, for identifying the
+other to the police.
+
+The game tree for this scenario is as follows:
+
+\begin{center}
+\begin{tikzpicture}[grow=down, sloped]
+\node[bag] {Joe chooses}
+    child {
+        node[bag] {$(-k, - \infty)$}
+            edge from parent
+            node[above] {Kill}
+    }
+    child {
+        node[bag] {Sue chooses}
+        child {
+                node[bag] {Joe chooses}
+                child {
+                        node[bag] {$(-c_J + b_J, -c_S + b_S)$}
+                        edge from parent
+                        node[above] {Identify}
+                    }
+                child {
+                        node[bag] {$(-c_J, b_S)$}
+                        edge from parent
+                        node[above] {Don't identify}
+                    }
+                edge from parent
+                node[above] {Identify}
+            }
+       child {
+                node[bag] {Joe chooses}
+                child {
+                        node[bag] {Sue chooses}
+                        child {
+                                node[bag] {$(-c_J + b_J, -c_S + b_S)$}
+                                edge from parent
+                                node[above] {Identify}
+                            }
+                        child {
+                                node[bag] {$(b_J, -c_S)$}
+                                edge from parent
+                                node[above] {Don't identify}
+                            }
+                        edge from parent
+                        node[above] {Identify}
+                    }
+                child {
+                        node[bag] {$(0, 0)$}
+                        edge from parent
+                        node[above] {Don't identify}
+                    }
+                edge from parent
+                node[above] {Don't identify}
+            }
+            edge from parent
+            node[above] {Release}
+    };
+\end{tikzpicture}
+\end{center}
+
+Using backwards induction we can infer that, so long as $-c_i + b_i >
+-c_i$ (which might not be true if we had a case of Stockholm Syndrome or
+something of the like), so long as one individual talks to the police,
+so too will the other.
+
+Hence, Sue will not identify Joe provided that $0 > -c_S + b_S$; that
+is, so long as the benefit of identifying Joe is less than the cost of
+being identified, Sue will not identify Joe.
 
 \end{document}
