@@ -1,0 +1,119 @@
+% Set up the document
+\documentclass{article}
+
+% Page size
+\usepackage[
+    letterpaper,]{geometry}
+% Lines between paragraphs
+\setlength{\parskip}{\baselineskip}
+\setlength{\parindent}{0pt}
+
+% Math
+\usepackage{amsfonts}
+\usepackage{amsmath}
+
+% Links
+\usepackage{hyperref}
+
+\begin{document}
+
+\section*{2. Sometimes it's better to say nothing at all}
+
+Recall that in the discrete Sir Philip Sidney game the minimum-cost
+signal which could allow stable, honest, communication had cost
+
+\begin{equation*}
+    \hat{c} = b - r d
+\end{equation*}
+
+\textbf{Part a}
+
+For the first part of Part a, assume a population where Responder (R) is
+common and needy Responders signal with cost $\hat{c}$. The first thing
+we want to do is compute the fitness of donors in this population. Let
+$p$ be the percentage of beneficiaries that are in severe need. Then, we
+have
+
+\begin{align*}
+    W_D(R) &= w_0 + V_D(R|R) + r V_B(R|R) \\
+           &= w_0
+              + \left((1 - p) 1 + p (1 - d)\right)
+              + r \left((1 - p) (1 - b) + p (1 - \hat{c})\right) \\
+           &= w_0 + 1 - p d + r \left((1 - p) (1 - b) + p (1 - \hat{c})\right) \\
+           &= w_0 + 1 - p d + r \left((1 - p) (1 - b) + p (1 - b + r d)\right) \\
+           &= w_0 + 1 - p d + r \left(p d r - b + 1\right) \\
+           &= w_0 + p d (r^2 - 1) + (1 - b) r + 1
+\end{align*}
+
+For the second part of Part a, assume a population where the strategy
+Always Give and Never Signal (AGNS) is common. We want to show that the
+donors in this non-signaling population have a higher fitness than
+donors in the Responder population provided
+
+\begin{equation*}
+    b > \frac{d}{r} (1 - p) + p r d
+\end{equation*}
+
+To show this inequality, let's first determine the fitness of donors in
+the AGNS population:
+
+\begin{align*}
+    W_D(AGNS) &= w_0 + V_D(AGNS|AGNS) + r V_B(AGNS|AGNS) \\
+              &= w_0 + 1 - d + r
+\end{align*}
+
+Let's now derive the inequality. The donors in the non-signaling
+population will have higher fitness provided
+
+\begin{align*}
+    &W_D(AGNS) > W_D(R) \\
+    &\Rightarrow w_0 + 1 - d + r > w_0 + p d (r^2 - 1) + (1 - b) r + 1 \\
+    &\Rightarrow - d > p d (r^2 - 1) - b r \\
+    &\Rightarrow b > \frac{p d (r^2 - 1) + d}{r} \\
+    &\Rightarrow b > \frac{d}{r} (1 - p) + p r d
+\end{align*}
+
+\textbf{Part b}
+
+Now we want to repeat Part a, but consider the fitness of beneficiaries
+of the two populations instead of donors. We want to show that
+beneficiaries in the non-signaling population will have higher fitness
+provided
+
+\begin{equation*}
+    b > r d
+\end{equation*}
+
+The fitnesses for the beneficiaries are given by
+
+\begin{align*}
+    W_B(R) &= w_0 + r V_D(R|R) + V_B(R|R) \\
+           &= w_0 + r (1 - p d) + p d r - b + 1 \\
+           &= w_0 + r - b + 1
+\end{align*}
+
+\begin{align*}
+    W_B(AGNS) &= w_0 + r V_D(AGNS|AGNS) + V_B(AGNS|AGNS) \\
+              &= w_0 + r (1 - d) + 1
+\end{align*}
+
+The beneficiaries in the non-signaling population will have higher
+fitness provided
+
+\begin{align*}
+    &W_B(AGNS) > W_B(R) \\
+    &\Rightarrow w_0 + r (1 - d) + 1 > w_0 + r - b + 1 \\
+    &\Rightarrow - r d > - b \\
+    &\Rightarrow b > r d
+\end{align*}
+
+\textbf{Part c}
+
+Now we're asked to show that there exist choices of parameters such that
+both signaling and non-signaling equilibria are stable and in which the
+average fitness of both donors and beneficiaries is less in the
+signaling population than in the non-signaling population.
+
+\textbf{what are they even asking for here??}
+
+\end{document}
